@@ -1,4 +1,4 @@
-import makeApiRequest from './apiService.tsx'
+import makeApiRequest from './apiService'
 
 interface LoginResponse {
   access_token: string
@@ -40,7 +40,7 @@ const login = async (
 }
 
 const logout = async (): Promise<void> => {
-  await makeApiRequest('auth/logout', {
+  await makeApiRequest('logout', {
     method: 'POST',
   })
   sessionStorage.removeItem('accessToken')

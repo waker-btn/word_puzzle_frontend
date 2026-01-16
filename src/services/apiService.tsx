@@ -1,4 +1,4 @@
-import authService from './authService.tsx'
+import authService from './authService'
 
 const API_URL = import.meta.env.VITE_API_URL
 
