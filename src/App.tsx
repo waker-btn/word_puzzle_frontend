@@ -10,7 +10,9 @@ function App() {
     null
   )
   const [isLoggedIn, setIsLoggedIn] = useState(() => authService.isLoggedIn())
-  const [userName, setUserName] = useState<string | null>(null)
+  const [userName, setUserName] = useState<string | null>(() =>
+    authService.getUsername()
+  )
   const [registeredUsername, setRegisteredUsername] = useState<
     string | undefined
   >(undefined)

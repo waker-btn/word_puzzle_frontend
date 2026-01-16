@@ -34,6 +34,7 @@ const login = async (
 
   if (response.access_token) {
     sessionStorage.setItem('accessToken', response.access_token)
+    sessionStorage.setItem('username', username)
   }
 
   return { username }
@@ -44,10 +45,15 @@ const logout = async (): Promise<void> => {
     method: 'POST',
   })
   sessionStorage.removeItem('accessToken')
+  sessionStorage.removeItem('username')
 }
 
 const getAccessToken = (): string | null => {
   return sessionStorage.getItem('accessToken')
+}
+
+const getUsername = (): string | null => {
+  return sessionStorage.getItem('username')
 }
 
 const refreshAccessToken = async (): Promise<string> => {
@@ -71,6 +77,7 @@ export default {
   login,
   logout,
   getAccessToken,
+  getUsername,
   refreshAccessToken,
   isLoggedIn,
 }
