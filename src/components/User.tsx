@@ -3,13 +3,31 @@ import AuthButton from './AuthButton'
 interface UserProps {
   onLoginClick: () => void
   onRegisterClick: () => void
+  onLogout: () => void
+  isLoggedIn: boolean
+  userName: string | null
 }
 
-function User({ onLoginClick, onRegisterClick }: UserProps) {
+function User({
+  onLoginClick,
+  onRegisterClick,
+  onLogout,
+  isLoggedIn,
+  userName,
+}: UserProps) {
   return (
     <>
-      <AuthButton type="login" onClick={onLoginClick} />
-      <AuthButton type="register" onClick={onRegisterClick} />
+      {isLoggedIn ? (
+        <>
+          {userName && <span>Welcome, {userName}!</span>}
+          <button onClick={onLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <AuthButton type="login" onClick={onLoginClick} />
+          <AuthButton type="register" onClick={onRegisterClick} />
+        </>
+      )}
     </>
   )
 }

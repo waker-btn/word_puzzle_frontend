@@ -1,33 +1,46 @@
+import { useState } from 'react'
+import authService from '../services/authService'
+
 interface OverlayProps {
   type: 'login' | 'register'
   onClose?: () => void
-  email?: string
-  password?: string
+  onLoginSuccess?: (user: { username: string }) => void
+  onRegisterSuccess?: (username: string) => void
+  defaultUsername?: string
 }
 
-function Overlay({ type, onClose }: OverlayProps) {
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+function Overlay({
+  type,
+  onClose,
+  onLoginSuccess,
+  onRegisterSuccess,
+  defaultUsername,
+}: OverlayProps) {
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-    const url = 'https://word-puzzle.up.railway.app'
-    const endpoint =
-      type === 'login' ? url + '/api/login' : url + '/api/register'
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError(null)
+    setIsLoading(true)
 
     const formData = new FormData(e.currentTarget)
-    const username = formData.get('username')
-    const password = formData.get('password')
+    const username = formData.get('username') as string
+    const password = formData.get('password') as string
 
-    fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        onClose?.()
-      })
-      .catch((err) => console.error(err))
+    try {
+      if (type === 'login') {
+        const user = await authService.login(username, password)
+        onLoginSuccess?.(user)
+      } else {
+        const result = await authService.register(username, password)
+        onRegisterSuccess?.(result.username)
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -36,14 +49,27 @@ function Overlay({ type, onClose }: OverlayProps) {
         <div className="overlay__content" onClick={(e) => e.stopPropagation()}>
           <h2>{type === 'login' ? 'Login' : 'Register'}</h2>
           <form onSubmit={submitForm}>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="password" name="password" placeholder="Password" />
-            {type === 'register' && (
-              <input type="password" placeholder="Confirm Password" />
-            )}
-            <button type="submit">
-              {type === 'login' ? 'Login' : 'Register'}
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              defaultValue={defaultUsername}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <button type="submit" disabled={isLoading}>
+              {isLoading
+                ? 'Loading...'
+                : type === 'login'
+                  ? 'Login'
+                  : 'Register'}
             </button>
+            {error && <div className="error">{error}</div>}
           </form>
         </div>
       </div>
