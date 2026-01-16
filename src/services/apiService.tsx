@@ -18,6 +18,7 @@ const makeApiRequest = async (url: string, options: ApiOptions = {}) => {
   }
 
   try {
+    console.log(`Making API request to: ${API_URL}/${url}`)
     let response = await fetch(`${API_URL}/${url}`, options)
 
     if (accessToken && (response.status === 401 || response.status === 403)) {
