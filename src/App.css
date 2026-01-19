@@ -6,3 +6,9 @@
   padding: 1.25rem;
   text-align: center;
 }
+
+.app__login-message {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  color: #666;
+}

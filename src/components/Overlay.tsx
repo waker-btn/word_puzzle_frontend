@@ -51,6 +51,12 @@ function Overlay({
           <h2 className="overlay__title">
             {type === 'login' ? 'Login' : 'Register'}
           </h2>
+          {type === 'register' && (
+            <p className="overlay__disclaimer">
+              Note: This is a demo project. Please use a unique password that
+              you don't use elsewhere.
+            </p>
+          )}
           <form className="overlay__form" onSubmit={submitForm}>
             <input
               className="overlay__input"

@@ -49,7 +49,13 @@ function App() {
         isLoggedIn={isLoggedIn}
         userName={userName}
       />
-      <main className="app__main">{isLoggedIn && <Word />}</main>
+      <main className="app__main">
+        {isLoggedIn ? (
+          <Word />
+        ) : (
+          <p className="app__login-message">Please Register and Log In</p>
+        )}
+      </main>
       {overlayType && (
         <Overlay
           type={overlayType}
