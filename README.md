@@ -2,6 +2,8 @@
 
 A word puzzle game built with React, TypeScript, and Vite. Features user authentication and an interactive keyboard interface.
 
+**[🎮 Live Site](https://word-puzzle-frontend.vercel.app/)** | **[⚙️ Backend Repo](https://github.com/waker-btn/word_puzzle)**
+
 ## Tech Stack
 
 - React 19
