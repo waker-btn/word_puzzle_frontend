@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import makeApiRequest from '../services/apiService'
 import Guesses from './Guesses'
 import Keyboard from './Keyboard'
+import './Word.css'
 
 interface GameState {
   game_id: string
@@ -71,19 +72,23 @@ function Word() {
     if (gameState.game_status === 'won') {
       return (
         <div className="game__status game__status--won">
-          <h2>You Won!</h2>
-          <p>Come back tomorrow for a new puzzle!</p>
+          <h2 className="game__status-title">You Won!</h2>
+          <p className="game__status-text">
+            Come back tomorrow for a new puzzle!
+          </p>
         </div>
       )
     }
     if (gameState.game_status === 'lost') {
       return (
         <div className="game__status game__status--lost">
-          <h2>Game Over</h2>
-          <p>
+          <h2 className="game__status-title">Game Over</h2>
+          <p className="game__status-text">
             The word was: <strong>{gameState.word.toUpperCase()}</strong>
           </p>
-          <p>Come back tomorrow for a new puzzle!</p>
+          <p className="game__status-text">
+            Come back tomorrow for a new puzzle!
+          </p>
         </div>
       )
     }

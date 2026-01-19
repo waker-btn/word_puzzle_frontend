@@ -1,3 +1,5 @@
+import './AuthButton.css'
+
 interface AuthButtonProps {
   type: 'login' | 'register'
   onClick: () => void
@@ -5,7 +7,9 @@ interface AuthButtonProps {
 
 function AuthButton({ type, onClick }: AuthButtonProps) {
   return (
-    <button onClick={onClick}>{type === 'login' ? 'Login' : 'Register'}</button>
+    <button className={`auth-button auth-button--${type}`} onClick={onClick}>
+      {type === 'login' ? 'Login' : 'Register'}
+    </button>
   )
 }
 

@@ -1,4 +1,5 @@
 import User from './User'
+import './Nav.css'
 
 interface NavProps {
   onLoginClick: () => void
@@ -16,15 +17,20 @@ function Nav({
   userName,
 }: NavProps) {
   return (
-    <>
-      <User
-        onLoginClick={onLoginClick}
-        onRegisterClick={onRegisterClick}
-        onLogout={onLogout}
-        isLoggedIn={isLoggedIn}
-        userName={userName}
-      />
-    </>
+    <nav className="nav">
+      <div className="nav__container">
+        <h1 className="nav__title">Word Puzzle</h1>
+        <div className="nav__user">
+          <User
+            onLoginClick={onLoginClick}
+            onRegisterClick={onRegisterClick}
+            onLogout={onLogout}
+            isLoggedIn={isLoggedIn}
+            userName={userName}
+          />
+        </div>
+      </div>
+    </nav>
   )
 }
 

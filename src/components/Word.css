@@ -1,0 +1,63 @@
+.game {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.game__error {
+  padding: 0.75rem;
+  background-color: #ffebee;
+  border: 1px solid var(--color-error);
+  border-radius: 4px;
+  color: #c62828;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.game__attempts {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  margin-bottom: 1rem;
+}
+
+.game__status {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.game__status-title {
+  margin-bottom: 0.5rem;
+}
+
+.game__status-text {
+  margin: 0.5rem 0;
+}
+
+/* Common status modifiers */
+.game__status--won,
+.game__status--lost {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.game__status--won {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: var(--color-success);
+}
+
+.game__status--lost {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: var(--color-error);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 518px) {
+  .game {
+    padding: 1rem;
+  }
+}

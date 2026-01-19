@@ -1,0 +1,20 @@
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user__welcome {
+  font-size: 0.875rem;
+}
+
+.user__logout-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  border-radius: 4px;
+}
+
+.user__logout-btn:hover {
+  background-color: var(--color-background);
+}

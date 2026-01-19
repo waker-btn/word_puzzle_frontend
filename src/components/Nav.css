@@ -1,0 +1,22 @@
+.nav {
+  background-color: var(--color-white);
+  border-bottom: 2px solid var(--color-border);
+  padding: 1rem 1.5rem;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.nav__title {
+  font-size: 1.5rem;
+}
+
+.nav__user {
+  display: flex;
+  gap: 0.5rem;
+}

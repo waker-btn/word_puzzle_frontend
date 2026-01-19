@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import './Keyboard.css'
 
 interface GameState {
   game_id: string
@@ -118,14 +119,6 @@ function Keyboard({
         ))}
       </div>
       <div className="keyboard__row">
-        <button
-          key="ENTER"
-          className="keyboard__key--enter"
-          onClick={() => handleKeyClick('ENTER')}
-          disabled={currentGuess.length !== 5 || isDisabled}
-        >
-          ENTER
-        </button>
         {middleRow.map((key) => (
           <button
             key={key}
@@ -156,6 +149,14 @@ function Keyboard({
             {key}
           </button>
         ))}
+        <button
+          key="ENTER"
+          className="keyboard__key--enter"
+          onClick={() => handleKeyClick('ENTER')}
+          disabled={currentGuess.length !== 5 || isDisabled}
+        >
+          ENTER
+        </button>
       </div>
     </div>
   )

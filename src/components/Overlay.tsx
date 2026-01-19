@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import authService from '../services/authService'
+import './Overlay.css'
 
 interface OverlayProps {
   type: 'login' | 'register'
@@ -47,9 +48,12 @@ function Overlay({
     <div className="overlay">
       <div className="overlay__backdrop" onClick={onClose}>
         <div className="overlay__content" onClick={(e) => e.stopPropagation()}>
-          <h2>{type === 'login' ? 'Login' : 'Register'}</h2>
-          <form onSubmit={submitForm}>
+          <h2 className="overlay__title">
+            {type === 'login' ? 'Login' : 'Register'}
+          </h2>
+          <form className="overlay__form" onSubmit={submitForm}>
             <input
+              className="overlay__input"
               type="text"
               name="username"
               placeholder="Username"
@@ -57,19 +61,24 @@ function Overlay({
               required
             />
             <input
+              className="overlay__input"
               type="password"
               name="password"
               placeholder="Password"
               required
             />
-            <button type="submit" disabled={isLoading}>
+            <button
+              className="overlay__submit"
+              type="submit"
+              disabled={isLoading}
+            >
               {isLoading
                 ? 'Loading...'
                 : type === 'login'
                   ? 'Login'
                   : 'Register'}
             </button>
-            {error && <div className="error">{error}</div>}
+            {error && <div className="overlay__error">{error}</div>}
           </form>
         </div>
       </div>

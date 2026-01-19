@@ -1,0 +1,8 @@
+.app {
+  min-height: 100vh;
+}
+
+.app__main {
+  padding: 1.25rem;
+  text-align: center;
+}

@@ -1,0 +1,82 @@
+.guesses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 auto 1.5rem;
+}
+
+.guesses__row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Common cell properties */
+.guesses__cell,
+.guesses__cell--correct,
+.guesses__cell--present,
+.guesses__cell--absent {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Default empty cell */
+.guesses__cell {
+  border: 2px solid var(--color-border);
+}
+
+/* Letter typed but not submitted yet */
+.guesses__cell:not([class*='--']):not(:empty) {
+  border-color: var(--color-gray);
+}
+
+/* Colored cells */
+.guesses__cell--correct,
+.guesses__cell--present,
+.guesses__cell--absent {
+  color: var(--color-white);
+}
+
+/* Green - correct position */
+.guesses__cell--correct {
+  background-color: var(--color-correct);
+  border: 2px solid var(--color-correct);
+}
+
+/* Yellow - wrong position */
+.guesses__cell--present {
+  background-color: var(--color-present);
+  border: 2px solid var(--color-present);
+}
+
+/* Gray - not in word */
+.guesses__cell--absent {
+  background-color: var(--color-absent);
+  border: 2px solid var(--color-absent);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 518px) {
+  .guesses {
+    gap: 0.25rem;
+  }
+
+  .guesses__row {
+    gap: 0.25rem;
+  }
+
+  .guesses__cell,
+  .guesses__cell--correct,
+  .guesses__cell--present,
+  .guesses__cell--absent {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+}

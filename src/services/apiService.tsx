@@ -39,7 +39,9 @@ const makeApiRequest = async (url: string, options: ApiOptions = {}) => {
 
     if (response.status >= 400) {
       const data = await response.json()
-      throw new Error(data.error || 'Fetch failed')
+      throw new Error(
+        data.error || data.message || data.detail || 'Request failed'
+      )
     }
 
     return await response.json()

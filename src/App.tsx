@@ -41,7 +41,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app">
       <Nav
         onLoginClick={() => setOverlayType('login')}
         onRegisterClick={() => setOverlayType('register')}
@@ -49,7 +49,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         userName={userName}
       />
-      {isLoggedIn && <Word />}
+      <main className="app__main">{isLoggedIn && <Word />}</main>
       {overlayType && (
         <Overlay
           type={overlayType}
@@ -62,7 +62,7 @@ function App() {
           defaultUsername={registeredUsername}
         />
       )}
-    </>
+    </div>
   )
 }
 

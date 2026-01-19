@@ -1,3 +1,5 @@
+import './Guesses.css'
+
 interface GameState {
   game_id: string
   remaining_attempts: number

@@ -1,0 +1,106 @@
+.keyboard {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.keyboard__row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+/* All keyboard keys */
+.keyboard__key--unused,
+.keyboard__key--correct,
+.keyboard__key--present,
+.keyboard__key--absent,
+.keyboard__key--enter,
+.keyboard__key--backspace {
+  min-width: 2.5rem;
+  height: 3.5rem;
+  padding: 0 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Default key (unused) */
+.keyboard__key--unused {
+  background-color: var(--color-unused);
+  color: var(--color-black);
+}
+
+/* Colored keys */
+.keyboard__key--correct,
+.keyboard__key--present,
+.keyboard__key--absent {
+  color: var(--color-white);
+}
+
+/* Green key (correct) */
+.keyboard__key--correct {
+  background-color: var(--color-correct);
+}
+
+/* Yellow key (present) */
+.keyboard__key--present {
+  background-color: var(--color-present);
+}
+
+/* Gray key (absent) */
+.keyboard__key--absent {
+  background-color: var(--color-absent);
+}
+
+/* Special keys */
+.keyboard__key--enter,
+.keyboard__key--backspace {
+  min-width: 4rem;
+  background-color: var(--color-unused);
+  color: var(--color-black);
+}
+
+/* Hover states */
+.keyboard__key--unused:hover:not(:disabled),
+.keyboard__key--enter:hover:not(:disabled),
+.keyboard__key--backspace:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+/* Disabled state */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 518px) {
+  .keyboard {
+    padding: 0.25rem;
+  }
+
+  .keyboard__row {
+    gap: 0.25rem;
+  }
+
+  .keyboard__key--unused,
+  .keyboard__key--correct,
+  .keyboard__key--present,
+  .keyboard__key--absent,
+  .keyboard__key--enter,
+  .keyboard__key--backspace {
+    min-width: 2rem;
+    height: 3rem;
+    padding: 0 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .keyboard__key--enter,
+  .keyboard__key--backspace {
+    min-width: 3rem;
+  }
+}
