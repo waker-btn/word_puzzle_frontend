@@ -49,7 +49,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         userName={userName}
       />
-      <Word />
+      {isLoggedIn && <Word />}
       {overlayType && (
         <Overlay
           type={overlayType}
