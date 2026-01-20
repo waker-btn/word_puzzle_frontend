@@ -40,6 +40,14 @@ function Overlay({
         setIsLoading(false)
         return
       }
+      if (!/^[a-zA-Z0-9]+$/.test(username)) {
+        setError(
+          'Username must contain only letters and numbers (no spaces or special characters)'
+        )
+        setIsLoading(false)
+        return
+      }
+
       if (password.length < 8) {
         setError('Password must be at least 8 characters')
         setIsLoading(false)
@@ -47,6 +55,11 @@ function Overlay({
       }
       if (password.length > 72) {
         setError('Password must not exceed 72 characters')
+        setIsLoading(false)
+        return
+      }
+      if (/\s/.test(password)) {
+        setError('Password cannot contain spaces')
         setIsLoading(false)
         return
       }
@@ -87,8 +100,9 @@ function Overlay({
               name="username"
               placeholder="Username"
               defaultValue={defaultUsername}
-              minLength={type === 'register' ? 3 : undefined}
               maxLength={30}
+              pattern={type === 'register' ? '[a-zA-Z0-9]+' : undefined}
+              title="Username must contain only letters and numbers"
               required
             />
             <input
@@ -96,8 +110,9 @@ function Overlay({
               type="password"
               name="password"
               placeholder="Password"
-              minLength={type === 'register' ? 8 : undefined}
               maxLength={72}
+              pattern={type === 'register' ? '\\S+' : undefined}
+              title="Password cannot contain spaces"
               required
             />
             <button
