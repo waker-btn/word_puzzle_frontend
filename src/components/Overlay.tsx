@@ -29,6 +29,29 @@ function Overlay({
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
+    if (type === 'register') {
+      if (username.length < 3) {
+        setError('Username must be at least 3 characters')
+        setIsLoading(false)
+        return
+      }
+      if (username.length > 30) {
+        setError('Username must not exceed 30 characters')
+        setIsLoading(false)
+        return
+      }
+      if (password.length < 8) {
+        setError('Password must be at least 8 characters')
+        setIsLoading(false)
+        return
+      }
+      if (password.length > 72) {
+        setError('Password must not exceed 72 characters')
+        setIsLoading(false)
+        return
+      }
+    }
+
     try {
       if (type === 'login') {
         const user = await authService.login(username, password)
@@ -64,6 +87,8 @@ function Overlay({
               name="username"
               placeholder="Username"
               defaultValue={defaultUsername}
+              minLength={type === 'register' ? 3 : undefined}
+              maxLength={30}
               required
             />
             <input
@@ -71,6 +96,8 @@ function Overlay({
               type="password"
               name="password"
               placeholder="Password"
+              minLength={type === 'register' ? 8 : undefined}
+              maxLength={72}
               required
             />
             <button
